@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontdesk Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar-bg { background: #4B3BC3; }
+        .active-tab { background: #3ABEF9; }
+        .logout-btn { background: #FFB23E; }
+        .search-btn { background: #2B38BF; }
+        .verify-btn { background: #3D4ABF; }
+    </style>
+</head>
+
+<body class="bg-[#F8F9FA] flex h-screen overflow-hidden text-gray-800">
+
+    <!-- SIDEBAR -->
+    <div class="w-64 sidebar-bg text-white flex flex-col">
+        <div class="p-6">
+            <h1 class="text-xl font-light italic opacity-80">Dashboard</h1>
+        </div>
+
+        <nav class="flex-1 mt-4">
+
+            <div class="flex items-center px-6 py-4 active-tab cursor-pointer">
+                <span class="mr-3 text-lg">🏠</span> Dashboard
+            </div>
+
+            <div class="flex items-center px-6 py-4 hover:bg-white/10 cursor-pointer transition">
+                <span class="mr-3 text-lg">🎓</span> Student Management
+            </div>
+
+            <!-- FIXED TYPO HERE -->
+            <div class="flex items-center px-6 py-4 hover:bg-white/10 cursor-pointer transition text-gray-100">
+                <span class="mr-3 text-lg">📋</span> Followup Management
+            </div>
+
+            <div class="flex items-center px-6 py-4 hover:bg-white/10 cursor-pointer transition text-gray-100">
+                <span class="mr-3 text-lg">📥</span> Archived Students
+            </div>
+
+        </nav>
+
+        <!-- LOGOUT -->
+        <div class="p-4 border-t border-white/10">
+            <a href="{% url 'logout' %}"
+               class="flex items-center justify-center w-full logout-btn text-white py-3 rounded-md font-bold shadow-md hover:brightness-105 transition">
+                <span class="mr-2">🚪</span> Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+        <!-- TOP CARDS -->
+        <div class="p-8 flex justify-between items-start">
+
+            <div class="flex gap-4">
+
+                <div class="bg-[#BDD3F5] p-5 rounded-lg flex items-center min-w-[200px] shadow-sm">
+                    <div class="bg-white p-2 rounded-md mr-4">👥</div>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-600">Total Students</p>
+                        <p class="text-2xl font-bold">50</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#FFE58F] p-5 rounded-lg flex items-center min-w-[200px] shadow-sm">
+                    <div class="bg-white p-2 rounded-md mr-4">📄</div>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-600">Pending Forms</p>
+                        <p class="text-2xl font-bold">10</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#F9B7FF] p-5 rounded-lg flex items-center min-w-[200px] shadow-sm">
+                    <div class="bg-white p-2 rounded-md mr-4">📂</div>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-600">Archived</p>
+                        <p class="text-2xl font-bold">5</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- USER -->
+            <div class="flex items-center gap-3">
+                <div class="text-right">
+                    <p class="font-bold">Priya Thapa</p>
+                    <p class="text-xs text-gray-500">Front desk</p>
+                </div>
+                <div class="w-11 h-11 bg-gray-200 rounded-full border border-gray-300 flex items-center justify-center">
+                    👤
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SEARCH -->
+        <div class="px-8 py-4 flex items-center justify-between">
+
+            <h2 class="text-lg font-bold">Student Management</h2>
+
+            <div class="flex shadow-sm border border-gray-200 rounded-lg overflow-hidden">
+
+                <div class="flex items-center bg-gray-100 px-4 py-2 w-96">
+                    <span class="mr-2 text-gray-400">🔍</span>
+                    <input type="text"
+                           placeholder="Search students by name or phone number"
+                           class="bg-transparent outline-none text-sm w-full italic">
+                </div>
+
+                <button class="search-btn text-white px-8 py-2 text-sm font-semibold">
+                    Search
+                </button>
+
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="flex-1 px-8 py-2 overflow-auto">
+
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+
+                <table class="w-full text-left">
+
+                    <thead class="bg-[#F5F5F5] border-b border-gray-200 text-gray-600">
+                        <tr class="text-xs uppercase tracking-wider font-semibold">
+                            <th class="p-4 w-12"><input type="checkbox"></th>
+                            <th class="p-4">Name</th>
+                            <th class="p-4">Email</th>
+                            <th class="p-4">Phone</th>
+                            <th class="p-4">Country</th>
+                            <th class="p-4 text-center">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- Django loop will go here -->
+                    </tbody>
+
+                </table>
+
+                <div class="p-20 text-center text-gray-400 italic">
+                    Student ko data fill bhayepachi yaha display hunechha.
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="px-8 py-6 flex justify-between items-center text-xs text-gray-400">
+            <div>Showing 0 to 0 of 0 entities</div>
+            <div class="flex gap-1">
+                <button class="px-3 py-1 border border-gray-200 rounded">&lt;</button>
+                <button class="px-3 py-1 bg-[#2B38BF] text-white rounded">1</button>
+                <button class="px-3 py-1 border border-gray-200 rounded">&gt;</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

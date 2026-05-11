@@ -3,8 +3,16 @@ from core.models import TimeStampedModel
 
 
 class Student(TimeStampedModel):
+    user = models.OneToOneField(
+        "accounts.User",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="student_profile"
+    )
+
     full_name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
     phone = models.CharField(max_length=20)
 
     branch = models.ForeignKey(

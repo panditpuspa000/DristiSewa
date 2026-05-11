@@ -1,0 +1,62 @@
+{% extends 'base_manager.html' %}
+
+{% block content %}
+
+<h2>Manager Dashboard</h2>
+
+<!-- TOP CARDS -->
+<div class="cards">
+
+    <div class="card green">
+        <h3>Total Students</h3>
+        <p>150</p>
+    </div>
+
+    <div class="card yellow">
+        <h3>Complete Followup</h3>
+        <p>25</p>
+    </div>
+
+    <div class="card red">
+        <h3>Pending Followup</h3>
+        <p>10</p>
+    </div>
+
+</div>
+
+<!-- BUTTON -->
+<div style="margin-top:15px;">
+    <button class="btn">+ Add Front Desk</button>
+</div>
+
+<!-- TABLE -->
+<table>
+    <tr>
+        <th>Name & Email</th>
+        <th>Phone & Country</th>
+        <th>Actions</th>
+        <th>Status</th>
+    </tr>
+
+    <tr>
+        <td>Sujata Thapa<br>su@gmail.com</td>
+        <td>9800000000<br>Australia</td>
+        <td><button class="btn">Verify</button></td>
+        <td><span style="color:orange;">New</span></td>
+    </tr>
+
+    <tr>
+        <td>Anita B.K<br>anita@gmail.com</td>
+        <td>9811111111<br>Canada</td>
+        <td><button class="btn verified">Verified</button></td>
+        <td><span style="color:green;">Offer Letter</span></td>
+    </tr>
+
+</table>
+
+<!-- PAGINATION -->
+<div style="margin-top:15px;">
+    Showing 1 to 10 of 10 entries
+</div>
+
+{% endblock %}

@@ -7,7 +7,9 @@ from core.services import filter_by_branch
 
 @login_required
 def student_list(request):
-    students = filter_by_branch(request.user, Student.objects.all())
+    queryset = Student.objects.all()
+
+    students = filter_by_branch(request.user, queryset)
 
     return render(request, "students/student_list.html", {
         "students": students
